@@ -13,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - Side A
-  - Side B
+  - WhiteSide
+  - BlackSide
   - Ground
-  - 
-  - 
-  - 
+  - InteractiveWhiteSide
+  - InteractiveBlackSide
+  - Player
   - 
   - 
   - 

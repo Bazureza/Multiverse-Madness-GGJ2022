@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloneController : MonoBehaviour
+public class CharacterCloneController : MonoBehaviour
 {
     [SerializeField] private Transform clone;
     [SerializeField] private int frameRecord;
@@ -33,6 +33,10 @@ public class CloneController : MonoBehaviour
     {
         lastRecord = Time.time;
         if (record != null) StopCoroutine(record);
+        RecordData data = new RecordData();
+        data.position = target.position;
+        data.time = Time.time;
+        recordedData.Add(data);
     }
 
     [Button]

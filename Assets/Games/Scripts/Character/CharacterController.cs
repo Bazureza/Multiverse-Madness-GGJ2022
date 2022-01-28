@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    [SerializeField] protected GameObject visual;
     [SerializeField] protected CharacterInfo characterInfo;
     protected Rigidbody2D rigid;
     protected Collider2D col;
@@ -12,6 +13,8 @@ public class CharacterController : MonoBehaviour
     protected CharacterPhysic physics;
 
     protected float inputAxisHorizontal;
+
+    private bool freeze;
 
     protected virtual void Init()
     {
@@ -22,6 +25,13 @@ public class CharacterController : MonoBehaviour
 
         physics.OnInit(transform);
         physics.ChangeGravityInfo(29, 0.15f);
+    }
+
+    public void Hide()
+    {
+        visual.SetActive(false);
+        freeze = true;
+        col.enabled = false;
     }
 
     protected virtual void ReadInput()
@@ -56,7 +66,7 @@ public class CharacterController : MonoBehaviour
     {
         if (collision.TryGetComponent(out ITriggerWithPlayer itwp))
         {
-            itwp.OnEnter(null);
+            itwp.OnExit(null);
         }
     }
 
@@ -68,6 +78,7 @@ public class CharacterController : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (freeze) return;
         ReadInput();
         Move();
     }
