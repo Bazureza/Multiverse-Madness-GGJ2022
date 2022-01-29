@@ -86,6 +86,7 @@ public class CharacterController : MonoBehaviour, IGameState
 
     protected virtual void OnTriggerCollisionEnter(Collider2D collision)
     {
+        if (freeze) return;
         if (collision.TryGetComponent(out ITriggerWithPlayer itwp))
         {
             itwp.OnEnter(this);
@@ -94,6 +95,7 @@ public class CharacterController : MonoBehaviour, IGameState
 
     protected virtual void OnTriggerCollisionExit(Collider2D collision)
     {
+        if (freeze) return;
         if (collision.TryGetComponent(out ITriggerWithPlayer itwp))
         {
             itwp.OnExit(null);

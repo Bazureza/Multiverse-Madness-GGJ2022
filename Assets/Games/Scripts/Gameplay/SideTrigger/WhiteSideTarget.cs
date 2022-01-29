@@ -6,7 +6,6 @@ public class WhiteSideTarget : SideTrigger
 {
     protected override void TriggerOnEnter(CharacterController characterController)
     {
-        (characterController as WhiteCharacterController).PlayRecordedClone();
         triggerEnterEvent?.Invoke();
         if (disableAfterInteract) gameObject.SetActive(false);
     }
