@@ -8,4 +8,7 @@ public class CharacterInfo
     public string characterName;
     public float characterSpeed;
     public float characterJumpForce;
+
+    public float gravity;
+    public float gravityMultiplier;
 }

@@ -6,4 +6,11 @@ public static class InputInfo
     public static (float Normal, float Raw) PlayerHorizontal { get { return (Input.GetAxis("PlayerHorizontal"), Input.GetAxisRaw("PlayerHorizontal")); } }
     public static (float Normal, float Raw) PlayerVertical { get { return (Input.GetAxis("PlayerVertical"), Input.GetAxisRaw("PlayerVertical")); } }
     public static (bool OnDown, bool Held, bool OnRelease) PlayerJump { get { return (Input.GetButtonDown("PlayerJump"), Input.GetButton("PlayerJump"), Input.GetButtonUp("PlayerJump")); } }
+
+
+    #region UI
+    public static (bool OnDown, bool Held, bool OnRelease) UIPause { get { return (Input.GetButtonDown("UIPause"), Input.GetButton("UIPause"), Input.GetButtonUp("UIPause")); } }
+    #endregion
+
+    public static (bool OnDown, bool Held) AnyInput { get { return (Input.anyKeyDown, Input.anyKey); } }
 }

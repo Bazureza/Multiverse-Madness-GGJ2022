@@ -18,9 +18,9 @@ TagManager:
   - Ground
   - InteractiveWhiteSide
   - InteractiveBlackSide
-  - Player
-  - 
-  - 
+  - PlayerWhite
+  - PlayerBlack
+  - Clone
   - 
   - 
   - 

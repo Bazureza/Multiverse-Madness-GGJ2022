@@ -5,6 +5,19 @@ using UnityEngine;
 public class WhiteCharacterController : CharacterController
 {
     [SerializeField] private CharacterCloneController cloneController;
+    private Vector2 firstSpawnedLocation;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        firstSpawnedLocation = transform.position;
+    }
+
+    public void TeleportToFirstSpawn()
+    {
+        transform.position = firstSpawnedLocation;
+    }
 
     public void StartRecordClone()
     {
