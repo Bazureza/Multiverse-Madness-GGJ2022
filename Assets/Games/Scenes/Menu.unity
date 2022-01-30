@@ -4682,7 +4682,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Multiverse Madness
+  m_text: Paralel Universe
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e405c34aac1c1b4dac4ba1bfc5a5f59, type: 2}
   m_sharedMaterial: {fileID: -4477875583523530808, guid: 4e405c34aac1c1b4dac4ba1bfc5a5f59,
@@ -4994,6 +4994,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d84de30192b0048a92a8aa9990126f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfx: {fileID: 979932395}
+  jump: {fileID: 8300000, guid: bf55f2e757f362f4aa8ea2a1da15dda7, type: 3}
+  move: {fileID: 8300000, guid: e61631e1474aab248bc553234a695201, type: 3}
 --- !u!4 &1826108279
 Transform:
   m_ObjectHideFlags: 0

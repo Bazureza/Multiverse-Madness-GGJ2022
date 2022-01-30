@@ -19,15 +19,19 @@ public class BlackCharacterController : CharacterController
 
     protected override void ReadInput()
     {
+        animator.ResetTrigger("jump");
+        animator.ResetTrigger("fall");
         physics.OnPreUpdate();
         physics.OnGravityUpdate(CharacterPhysic.PhysicsState.OnNormal);
         inputAxisHorizontal = InputInfo.PlayerHorizontal.Raw * characterInfo.characterSpeed * -1f;
-        UpdateAnimation();
+        //UpdateAnimation();
         physics.velocity.x = inputAxisHorizontal;
 
         if (InputInfo.PlayerJump.OnDown && physics.collisions.isGrounded)
         {
             physics.velocity.y = characterInfo.characterJumpForce;
+            animator.SetTrigger("jump");
+            SimpleAudio.Instance?.PlaySFXJump();
         }
     }
 }

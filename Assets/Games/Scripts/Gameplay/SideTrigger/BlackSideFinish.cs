@@ -7,7 +7,7 @@ public class BlackSideFinish : SideTrigger
     protected override void TriggerOnEnter(CharacterController characterController)
     {
         triggerEnterEvent?.Invoke();
-        if (disableAfterInteract) gameObject.SetActive(false);
+        if (disableAfterInteract) gameObject.GetComponent<Collider2D>().enabled = false;
     }
 
     protected override void TriggerOnExit(CharacterController characterController)

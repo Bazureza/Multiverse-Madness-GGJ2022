@@ -57,6 +57,11 @@ public class CharacterController : MonoBehaviour, IGameState
         col.enabled = false;
     }
 
+    public void PlayMoveSFX()
+    {
+        SimpleAudio.Instance?.PlaySFXMove();
+    }
+
     protected virtual void ReadInput()
     {
         animator.ResetTrigger("jump");
@@ -72,6 +77,7 @@ public class CharacterController : MonoBehaviour, IGameState
         {
             physics.velocity.y = characterInfo.characterJumpForce;
             animator.SetTrigger("jump");
+            SimpleAudio.Instance?.PlaySFXJump();
         }
     }
 
