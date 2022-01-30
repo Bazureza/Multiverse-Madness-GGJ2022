@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TomGustin
 {
+#if UNITY_EDITOR
     [InitializeOnLoad]
     public class ChangeOrderExecution
     {
@@ -26,4 +27,5 @@ namespace TomGustin
             Object.DestroyImmediate(temp);
         }
     }
+#endif
 }
