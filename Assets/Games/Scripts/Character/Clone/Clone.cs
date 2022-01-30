@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Clone : MonoBehaviour, ITriggerWithPlayer
 {
+    [SerializeField] private SpriteRenderer render;
     [SerializeField] private Animator anim;
+
+    private Vector2 lastKnownPosition;
 
     private GameManager gameManager
     {
@@ -16,6 +19,24 @@ public class Clone : MonoBehaviour, ITriggerWithPlayer
         }
     }
     private GameManager _gameManager;
+
+
+    public void TrackTransform(Vector2 lastKnown)
+    {
+        if (lastKnown.x > lastKnownPosition.x)
+        {
+            anim.SetFloat("movement", 1f);
+            render.flipX = false;
+        } else if (lastKnown.x < lastKnownPosition.x)
+        {
+            anim.SetFloat("movement", 1f);
+            render.flipX = true;
+        } else
+        {
+            anim.SetFloat("movement", 0f);
+        }
+        lastKnownPosition = lastKnown;
+    }
 
     void ITriggerWithPlayer.OnEnter(CharacterController characterController)
     {

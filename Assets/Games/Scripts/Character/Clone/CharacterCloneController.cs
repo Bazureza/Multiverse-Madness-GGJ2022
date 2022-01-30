@@ -151,23 +151,25 @@ public class CharacterCloneController : MonoBehaviour, IGameState
 
             GameObject objSpawned = clone.gameObject.Spawn(recordedData[0].position);
             if (!spawnedClone.Contains(objSpawned)) spawnedClone.Add(objSpawned);
-            iteratorClonePlaying.Add(StartCoroutine(DoPlayingTape(objSpawned.transform)));
+            iteratorClonePlaying.Add(StartCoroutine(DoPlayingTape(objSpawned.GetComponent<Clone>())));
             yield return new WaitForSeconds((lastRecord - firstRecord) / numberOfClone);
         }
     }
 
-    private IEnumerator DoPlayingTape(Transform clone)
+    private IEnumerator DoPlayingTape(Clone clone)
     {
         while (true)
         {
-            clone.position = recordedData[0].position;
+            clone.transform.position = recordedData[0].position;
+            clone.TrackTransform(recordedData[0].position);
+            clone.TrackTransform(recordedData[0].position);
             Tween t;
 
             for (int i = 0; i < recordedData.Count - 1; i++)
             {
                 while (freeze) yield return null;
-
-                t = clone.DOMove(recordedData[i].position, recordedData[i + 1].time - recordedData[i].time).SetEase(Ease.Linear);
+                clone.TrackTransform(recordedData[i + 1].position);
+                t = clone.transform.DOMove(recordedData[i].position, recordedData[i + 1].time - recordedData[i].time).SetEase(Ease.Linear);
                 yield return t.WaitForCompletion();
             }
 
