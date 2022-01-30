@@ -33,7 +33,7 @@ public class CharacterController : MonoBehaviour, IGameState
 
         col = GetComponent<Collider2D>();
         rigid = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        animator = visual.GetComponent<Animator>();
         physics = GetComponent<CharacterPhysic>();
         gameManager = ServiceLocator.Resolve<GameManager>();
 
@@ -59,15 +59,19 @@ public class CharacterController : MonoBehaviour, IGameState
 
     protected virtual void ReadInput()
     {
+        animator.ResetTrigger("jump");
+        animator.ResetTrigger("fall");
+
         physics.OnPreUpdate();
         physics.OnGravityUpdate(CharacterPhysic.PhysicsState.OnNormal);
         inputAxisHorizontal = InputInfo.PlayerHorizontal.Raw * characterInfo.characterSpeed;
-        UpdateAnimation();
+        
         physics.velocity.x = inputAxisHorizontal;
 
         if (InputInfo.PlayerJump.OnDown && physics.collisions.isGrounded)
         {
             physics.velocity.y = characterInfo.characterJumpForce;
+            animator.SetTrigger("jump");
         }
     }
 
@@ -77,10 +81,17 @@ public class CharacterController : MonoBehaviour, IGameState
         if (inputAxisHorizontal < 0) facingRight = false;
 
         visualImage.flipX = !facingRight;
+        animator.SetFloat("movement", Mathf.Abs(inputAxisHorizontal));
     }
 
     protected virtual void Move()
     {
+        if (physics.collisions.isGrounded && !physics.collisions.isGroundedPrev)
+        {
+            animator.SetTrigger("fall");
+            print("grounded");
+        }
+
         physics.OnUpdate();
     }
 
@@ -123,6 +134,7 @@ public class CharacterController : MonoBehaviour, IGameState
         if (freeze) return;
         ReadInput();
         Move();
+        UpdateAnimation();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
