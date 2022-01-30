@@ -104,7 +104,7 @@ MonoBehaviour:
   characterInfo:
     characterName: 
     characterSpeed: 5
-    characterJumpForce: 15
+    characterJumpForce: 20
     gravity: 50
     gravityMultiplier: 0.15
   facingRight: 1
@@ -464,7 +464,7 @@ MonoBehaviour:
   characterInfo:
     characterName: 
     characterSpeed: 5
-    characterJumpForce: 15
+    characterJumpForce: 20
     gravity: 50
     gravityMultiplier: 0.15
   facingRight: 1
