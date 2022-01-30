@@ -29,12 +29,12 @@ public class TGCallback : MonoBehaviour
     private IEnumerator PlayComponents()
     {
         isPlaying = true;
-        if (freezePlayerOnPlay) ServiceLocator.Resolve<GameManager>().FreezeGame(true);
+        if (freezePlayerOnPlay) ServiceLocator.Resolve<GameManager>()?.FreezeGame(true);
         foreach (TGCallbackComponent tgcc in tgccs)
         {
             yield return StartCoroutine(tgcc.PlayComponent());
         }
-        if (freezePlayerOnPlay) ServiceLocator.Resolve<GameManager>().FreezeGame(false);
+        if (freezePlayerOnPlay) ServiceLocator.Resolve<GameManager>()?.FreezeGame(false);
         isPlaying = false;
     }
 }

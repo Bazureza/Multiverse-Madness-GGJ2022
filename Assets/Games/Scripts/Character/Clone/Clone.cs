@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Clone : MonoBehaviour, ITriggerWithPlayer
 {
+    [SerializeField] private Animator anim;
+
     private GameManager gameManager
     {
         get
